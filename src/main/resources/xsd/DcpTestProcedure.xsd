@@ -1,0 +1,1184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2014 rel. 2 sp1 (http://www.altova.com) by Martin Krammer (Kompetenzzentrum -) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+	xmlns:altova="http://www.altova.com/xml-schema-extensions" elementFormDefault="qualified"
+	attributeFormDefault="unqualified" vc:minVersion="1.1">
+	<xs:element name="DcpTestProcedure">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence maxOccurs="1">
+				<xs:element name="TransportProtocols">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element minOccurs="0" name="UDP_IPv4">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Control">
+											<xs:complexType>
+												<xs:attribute name="host" type="xs:normalizedString"/>
+												<xs:attribute name="port" type="xs:unsignedShort"
+												use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element minOccurs="0" name="DAT_input_output">
+											<xs:complexType>
+												<xs:sequence>
+												<xs:choice>
+												<xs:element name="AvailablePortRange">
+												<xs:complexType>
+												<xs:attribute name="from" type="xs:unsignedShort"
+												use="required"/>
+												<xs:attribute name="to" type="xs:unsignedShort"
+												use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="AvailablePort">
+												<xs:complexType>
+												<xs:attribute name="port" type="xs:unsignedShort"
+												use="required"/>
+												</xs:complexType>
+												</xs:element>
+												</xs:choice>
+												</xs:sequence>
+												<xs:attribute name="host" type="xs:normalizedString"
+												/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element minOccurs="0" name="DAT_parameter">
+											<xs:complexType>
+												<xs:sequence>
+												<xs:choice>
+												<xs:element name="AvailablePortRange">
+												<xs:complexType>
+												<xs:attribute name="from" type="xs:unsignedShort"
+												use="required"/>
+												<xs:attribute name="to" type="xs:unsignedShort"
+												use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="AvailablePort">
+												<xs:complexType>
+												<xs:attribute name="port" type="xs:unsignedShort"
+												use="required"/>
+												</xs:complexType>
+												</xs:element>
+												</xs:choice>
+												</xs:sequence>
+												<xs:attribute name="host" type="xs:normalizedString"
+												/>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element minOccurs="0" name="CAN"> </xs:element>
+							<xs:element minOccurs="0" name="USB">
+								<xs:complexType>
+									<xs:sequence maxOccurs="unbounded" minOccurs="1">
+										<xs:element name="DataPipe">
+											<xs:complexType>
+												<xs:attribute name="direction">
+												<xs:simpleType>
+												<xs:restriction base="xs:string">
+												<xs:enumeration value="In"/>
+												<xs:enumeration value="Out"/>
+												</xs:restriction>
+												</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="endpointAddress"
+												type="xs:unsignedByte" use="required">
+												<xs:annotation>
+												<xs:documentation>Has to be constructed according
+												to the USB standard. The endpoint number has to be
+												greater than 2.</xs:documentation>
+												</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="intervall"
+												type="xs:unsignedByte" use="required">
+												<xs:annotation>
+												<xs:documentation>Interval for polling endpoint
+												data transfers. Value in frame
+												counts.</xs:documentation>
+												</xs:annotation>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element minOccurs="0" name="Bluetooth">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Address">
+											<xs:complexType>
+												<xs:attribute name="bd_addr" use="required">
+												<xs:simpleType>
+												<xs:restriction base="xs:string">
+												<xs:pattern
+												value="([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})"/>
+												</xs:restriction>
+												</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="port" use="required">
+												<xs:simpleType>
+												<xs:restriction base="xs:unsignedByte">
+												<xs:minInclusive value="1"/>
+												<xs:maxInclusive value="30"/>
+												</xs:restriction>
+												</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="alias"
+												type="xs:normalizedString"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element minOccurs="0" name="TCP_IPv4">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Control">
+											<xs:complexType>
+												<xs:attribute name="host" type="xs:normalizedString"/>
+												<xs:attribute name="port" type="xs:unsignedShort"
+												use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element minOccurs="0" name="DAT_input_output">
+											<xs:complexType>
+												<xs:sequence>
+												<xs:choice>
+												<xs:element name="AvailablePortRange">
+												<xs:complexType>
+												<xs:attribute name="from" type="xs:unsignedShort"
+												use="required"/>
+												<xs:attribute name="to" type="xs:unsignedShort"
+												use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="AvailablePort">
+												<xs:complexType>
+												<xs:attribute name="port" type="xs:unsignedShort"
+												use="required"/>
+												</xs:complexType>
+												</xs:element>
+												</xs:choice>
+												</xs:sequence>
+												<xs:attribute name="host" type="xs:normalizedString"
+												/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element minOccurs="0" name="DAT_parameter">
+											<xs:complexType>
+												<xs:sequence>
+												<xs:choice>
+												<xs:element name="AvailablePortRange">
+												<xs:complexType>
+												<xs:attribute name="from" type="xs:unsignedShort"
+												use="required"/>
+												<xs:attribute name="to" type="xs:unsignedShort"
+												use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="AvailablePort">
+												<xs:complexType>
+												<xs:attribute name="port" type="xs:unsignedShort"
+												use="required"/>
+												</xs:complexType>
+												</xs:element>
+												</xs:choice>
+												</xs:sequence>
+												<xs:attribute name="host" type="xs:normalizedString"
+												/>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:sequence maxOccurs="unbounded">
+
+					<xs:choice>
+
+						<xs:element name="Transition">
+							<xs:complexType>
+								<xs:choice>
+									<xs:element name="Sending">
+
+
+										<xs:complexType>
+
+
+											<xs:sequence>
+												<xs:element name="ClockTime" minOccurs="0">
+												<xs:complexType>
+												<xs:attribute name="numerator"
+												type="xs:unsignedInt" form="unqualified"
+												use="required"/>
+												<xs:attribute name="denominator"
+												type="xs:unsignedInt" use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:choice>
+												<xs:annotation>
+												<xs:documentation/>
+												</xs:annotation>
+												<xs:element name="CFG_time_res">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="numerator"
+												type="xs:unsignedInt" use="required"/>
+												<xs:attribute name="denominator"
+												type="xs:unsignedInt" use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="CFG_steps">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="data_id"
+												type="xs:unsignedShort" use="required"/>
+												<xs:attribute name="steps" type="xs:unsignedInt"
+												use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="CFG_input">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="data_id"
+												type="xs:unsignedShort" use="required"/>
+												<xs:attribute name="pos" type="xs:unsignedShort"
+												use="required"/>
+												<xs:attribute name="target_vr"
+												type="xs:unsignedLong" use="required"/>
+												<xs:attribute name="source_data_type"
+												type="xs:unsignedByte" use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="CFG_output">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="data_id"
+												type="xs:unsignedShort" use="required"/>
+												<xs:attribute name="pos" type="xs:unsignedShort"
+												use="required"/>
+												<xs:attribute name="source_vr"
+												type="xs:unsignedLong" use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="CFG_source_network_information">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="data_id"
+												type="xs:unsignedShort" use="required"/>
+												<xs:attribute name="transport_protocol"
+												type="xs:unsignedByte" use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element
+												name="CFG_source_network_information_UDP_IPv4">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="data_id"
+												type="xs:unsignedShort" use="required"/>
+												<xs:attribute name="transport_protocol"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="ip_address"
+												type="xs:unsignedInt" use="required"/>
+												<xs:attribute name="port" type="xs:unsignedShort"
+												use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element
+												name="CFG_source_network_information_USB">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="data_id"
+												type="xs:unsignedShort" use="required"/>
+												<xs:attribute name="transport_protocol"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="endpoint_address"
+												type="xs:unsignedByte" use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element
+												name="CFG_source_network_information_Bluetooth">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="data_id"
+												type="xs:unsignedShort" use="required"/>
+												<xs:attribute name="transport_protocol"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="port" type="xs:unsignedByte"
+												use="required"/>
+												<xs:attribute name="bd_addr"
+												type="xs:unsignedLong" use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element
+												name="CFG_source_network_information_TCP_IPv4">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="data_id"
+												type="xs:unsignedShort" use="required"/>
+												<xs:attribute name="transport_protocol"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="ip_address"
+												type="xs:unsignedInt" use="required"/>
+												<xs:attribute name="port" type="xs:unsignedShort"
+												use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="CFG_target_network_information">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="data_id"
+												type="xs:unsignedShort" use="required"/>
+												<xs:attribute name="transport_protocol"
+												type="xs:unsignedByte" use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element
+												name="CFG_target_network_information_UDP_IPv4">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="data_id"
+												type="xs:unsignedShort" use="required"/>
+												<xs:attribute name="transport_protocol"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="ip_address"
+												type="xs:unsignedInt" use="required"/>
+												<xs:attribute name="port" type="xs:unsignedShort"
+												use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element
+												name="CFG_target_network_information_USB">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="data_id"
+												type="xs:unsignedShort" use="required"/>
+												<xs:attribute name="transport_protocol"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="endpoint_address"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="slave_uuid" use="required">
+												<xs:annotation>
+												<xs:documentation/>
+												</xs:annotation>
+												<xs:simpleType>
+												<xs:restriction base="xs:string">
+												<xs:length value="36"/>
+												<xs:pattern
+												value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"
+												/>
+												</xs:restriction>
+												</xs:simpleType>
+												</xs:attribute>
+												</xs:complexType>
+												</xs:element>
+												<xs:element
+												name="CFG_target_network_information_Bluetooth">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="data_id"
+												type="xs:unsignedShort" use="required"/>
+												<xs:attribute name="transport_protocol"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="port" type="xs:unsignedByte"
+												use="required"/>
+												<xs:attribute name="bd_addr"
+												type="xs:unsignedLong" use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element
+												name="CFG_target_network_information_TCP_IPv4">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="data_id"
+												type="xs:unsignedShort" use="required"/>
+												<xs:attribute name="transport_protocol"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="ip_address"
+												type="xs:unsignedInt" use="required"/>
+												<xs:attribute name="port" type="xs:unsignedShort"
+												use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="CFG_clear">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="CFG_parameter">
+												<xs:complexType>
+												<xs:sequence>
+												<xs:element name="Payload">
+												<xs:complexType>
+												<xs:choice>
+												<xs:element name="Int8">
+												<xs:complexType>
+												<xs:attribute name="value" use="required">
+												<xs:simpleType>
+												<xs:list itemType="xs:byte"/>
+												</xs:simpleType>
+												</xs:attribute>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="Int16">
+												<xs:complexType>
+												<xs:attribute name="value" use="required">
+												<xs:simpleType>
+												<xs:list itemType="xs:short"/>
+												</xs:simpleType>
+												</xs:attribute>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="Int32">
+												<xs:complexType>
+												<xs:attribute name="value" use="required">
+												<xs:simpleType>
+												<xs:list itemType="xs:int"/>
+												</xs:simpleType>
+												</xs:attribute>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="Int64">
+												<xs:complexType>
+												<xs:attribute name="value" use="required">
+												<xs:simpleType>
+												<xs:list itemType="xs:long"/>
+												</xs:simpleType>
+												</xs:attribute>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="Uint8">
+												<xs:complexType>
+												<xs:attribute name="value" use="required">
+												<xs:simpleType>
+												<xs:list itemType="xs:unsignedByte"/>
+												</xs:simpleType>
+												</xs:attribute>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="Uint16">
+												<xs:complexType>
+												<xs:attribute name="value" use="required">
+												<xs:simpleType>
+												<xs:list itemType="xs:unsignedShort"/>
+												</xs:simpleType>
+												</xs:attribute>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="Uint32">
+												<xs:complexType>
+												<xs:attribute name="value" use="required">
+												<xs:simpleType>
+												<xs:list itemType="xs:unsignedInt"/>
+												</xs:simpleType>
+												</xs:attribute>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="Uint64">
+												<xs:complexType>
+												<xs:attribute name="value" use="required">
+												<xs:simpleType>
+												<xs:list itemType="xs:unsignedLong"/>
+												</xs:simpleType>
+												</xs:attribute>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="Float32">
+												<xs:complexType>
+												<xs:attribute name="value" use="required">
+												<xs:simpleType>
+												<xs:list itemType="xs:float"/>
+												</xs:simpleType>
+												</xs:attribute>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="Float64">
+												<xs:complexType>
+												<xs:attribute name="value" use="required">
+												<xs:simpleType>
+												<xs:list itemType="xs:double"/>
+												</xs:simpleType>
+												</xs:attribute>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="String">
+												<xs:complexType>
+												<xs:attribute name="value" type="xs:string"
+												use="required"> </xs:attribute>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="Binary">
+												<xs:complexType>
+												<xs:attribute name="value" type="xs:hexBinary"
+												use="required"/>
+												</xs:complexType>
+												</xs:element>
+												</xs:choice>
+												</xs:complexType>
+												</xs:element>
+												</xs:sequence>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="target_vr"
+												type="xs:unsignedShort" use="required"/>
+												<xs:attribute name="source_data_type"
+												type="xs:unsignedByte" use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="CFG_tunable_parameter">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="param_id"
+												type="xs:unsignedShort" use="required"/>
+												<xs:attribute name="pos" type="xs:unsignedShort"
+												use="required"/>
+												<xs:attribute name="target_vr"
+												type="xs:unsignedShort" use="required"/>
+												<xs:attribute name="source_data_type"
+												type="xs:unsignedByte" use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="CFG_param_network_information">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="param_id"
+												type="xs:unsignedShort" use="required"/>
+												<xs:attribute name="transport_protocol"
+												type="xs:unsignedByte" use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element
+												name="CFG_param_network_information_UDP_IPv4">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="param_id"
+												type="xs:unsignedShort" use="required"/>
+												<xs:attribute name="transport_protocol"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="ip_address"
+												type="xs:unsignedInt" use="required"/>
+												<xs:attribute name="port" type="xs:unsignedShort"
+												use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element
+												name="CFG_param_network_information_USB">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="data_id"
+												type="xs:unsignedShort" use="required"/>
+												<xs:attribute name="transport_protocol"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="endpoint_address"
+												type="xs:unsignedByte" use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element
+												name="CFG_param_network_information_Bluetooth">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="data_id"
+												type="xs:unsignedShort" use="required"/>
+												<xs:attribute name="transport_protocol"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="port" type="xs:unsignedByte"
+												use="required"/>
+												<xs:attribute name="bd_addr"
+												type="xs:unsignedLong" use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element
+												name="CFG_param_network_information_TCP_IPv4">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="param_id"
+												type="xs:unsignedShort" use="required"/>
+												<xs:attribute name="transport_protocol"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="ip_address"
+												type="xs:unsignedInt" use="required"/>
+												<xs:attribute name="port" type="xs:unsignedShort"
+												use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="CFG_logging">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="log_category"
+												type="xs:unsignedByte" form="unqualified"
+												use="required"/>
+												<xs:attribute name="log_level"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="log_mode"
+												type="xs:unsignedByte" use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="CFG_scope">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="data_id"
+												type="xs:unsignedShort" use="required"/>
+												<xs:attribute name="scope" type="xs:unsignedByte"
+												use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="STC_register">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="state_id" use="required"
+												type="xs:unsignedByte"/>
+												<xs:attribute name="slave_uuid " use="optional">
+												<xs:annotation>
+												<xs:documentation>Only for CAN not
+												required</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+												<xs:restriction base="xs:string">
+												<xs:length value="36"/>
+												<xs:pattern
+												value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"
+												/>
+												</xs:restriction>
+												</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="op_mode"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="major_version"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="minor_version"
+												type="xs:unsignedByte" use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="STC_deregister">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="state_id" use="required"
+												type="xs:unsignedByte"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="STC_prepare">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="state_id" use="required"
+												type="xs:unsignedByte"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="STC_configure">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="state_id" use="required"
+												type="xs:unsignedByte"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="STC_initialize">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="state_id" use="required"
+												type="xs:unsignedByte"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="STC_run">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="state_id" use="required"
+												type="xs:unsignedByte"/>
+												<xs:attribute name="start_time" type="xs:long"
+												use="optional">
+												<xs:annotation>
+												<xs:documentation>Only for CAN not
+												required</xs:documentation>
+												</xs:annotation>
+												</xs:attribute>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="STC_do_step">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="state_id" use="required"
+												type="xs:unsignedByte"/>
+												<xs:attribute name="steps" type="xs:unsignedInt"
+												use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="STC_send_outputs">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="state_id" use="required"
+												type="xs:unsignedByte"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="STC_stop">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="state_id" use="required"
+												type="xs:unsignedByte"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="STC_reset">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="state_id" use="required"
+												type="xs:unsignedByte"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="INF_state">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="INF_error">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="INF_log">
+												<xs:complexType>
+												<xs:attribute name="receiver"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="log_category"
+												type="xs:unsignedByte" use="required"/>
+												<xs:attribute name="log_max_num"
+												type="xs:unsignedByte" use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="DAT_input_output">
+												<xs:complexType>
+												<xs:sequence maxOccurs="unbounded">
+												<xs:element ref="SendingPayloadField"/>
+												</xs:sequence>
+												<xs:attribute name="data_id"
+												type="xs:unsignedShort" use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="DAT_parameter">
+												<xs:complexType>
+												<xs:sequence maxOccurs="unbounded">
+												<xs:element ref="SendingPayloadField"/>
+												</xs:sequence>
+												<xs:attribute name="param_id"
+												type="xs:unsignedShort" use="required"/>
+												</xs:complexType>
+												</xs:element>
+												</xs:choice>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="Receiving">
+
+
+
+
+										<xs:complexType>
+
+
+
+											<xs:choice>
+												<xs:annotation>
+												<xs:documentation/>
+												</xs:annotation>
+
+												<xs:element name="RSP_ack">
+												<xs:complexType>
+												<xs:attribute name="sender" type="xs:unsignedByte"
+												use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="RSP_error_ack">
+												<xs:complexType>
+												<xs:attribute name="sender" type="xs:unsignedByte"
+												use="required"/>
+												<xs:attribute name="error_code"
+												type="xs:unsignedShort" use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="RSP_nack">
+												<xs:complexType>
+												<xs:attribute name="sender" type="xs:unsignedByte"
+												use="required"/>
+												<xs:attribute name="error_code"
+												type="xs:unsignedShort" use="required"/>
+												<xs:attribute name="exp_pdu_seq_id"
+												type="xs:unsignedShort"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="RSP_state_ack">
+												<xs:complexType>
+												<xs:attribute name="sender" type="xs:unsignedByte"
+												use="required"/>
+												<xs:attribute name="state_id" use="required"
+												type="xs:unsignedByte"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="NTF_state_changed">
+												<xs:complexType>
+												<xs:attribute name="sender" type="xs:unsignedByte"
+												use="required"/>
+												<xs:attribute name="state_id" use="required"
+												type="xs:unsignedByte"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="RSP_log_ack">
+												<xs:complexType>
+												<xs:attribute name="sender" type="xs:unsignedByte"
+												use="required"/>
+												<xs:attribute name="length" type="xs:unsignedInt"
+												use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="NTF_log">
+												<xs:complexType>
+												<xs:attribute name="sender" type="xs:unsignedByte"
+												use="required"/>
+												<xs:attribute name="length" type="xs:unsignedInt"
+												use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="DAT_input_output">
+												<xs:complexType>
+												<xs:sequence maxOccurs="unbounded">
+												<xs:element ref="ReceivingPayloadField"/>
+												</xs:sequence>
+												<xs:attribute name="data_id"
+												type="xs:unsignedShort" use="required"/>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="DAT_parameter">
+												<xs:complexType>
+												<xs:sequence maxOccurs="unbounded">
+												<xs:element ref="ReceivingPayloadField"/>
+												</xs:sequence>
+												<xs:attribute name="param_id"
+												type="xs:unsignedShort" use="required"/>
+												</xs:complexType>
+												</xs:element>
+											</xs:choice>
+										</xs:complexType>
+									</xs:element>
+								</xs:choice>
+								<xs:attribute name="from" type="xs:unsignedInt" use="required"/>
+								<xs:attribute name="to" type="xs:unsignedInt" use="required"/>
+								<xs:attribute name="log" default="false" type="xs:boolean"
+									use="optional"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+				</xs:sequence>
+			</xs:sequence>
+			<xs:attribute name="version" use="required" type="xs:double">
+				<xs:annotation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:string" use="optional"/>
+			<xs:attribute name="acceptingSteps">
+				<xs:simpleType>
+					<xs:list itemType="xs:unsignedInt"/>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+
+	<xs:element name="SendingPayloadField">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="Int8">
+					<xs:complexType>
+						<xs:attribute name="value" use="required">
+							<xs:simpleType>
+								<xs:list itemType="xs:byte"/>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Int16">
+					<xs:complexType>
+						<xs:attribute name="value" use="required">
+							<xs:simpleType>
+								<xs:list itemType="xs:short"/>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Int32">
+					<xs:complexType>
+						<xs:attribute name="value" use="required">
+							<xs:simpleType>
+								<xs:list itemType="xs:int"/>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Int64">
+					<xs:complexType>
+						<xs:attribute name="value" use="required">
+							<xs:simpleType>
+								<xs:list itemType="xs:long"/>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Uint8">
+					<xs:complexType>
+						<xs:attribute name="value" use="required">
+							<xs:simpleType>
+								<xs:list itemType="xs:unsignedByte"/>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Uint16">
+					<xs:complexType>
+						<xs:attribute name="value" use="required">
+							<xs:simpleType>
+								<xs:list itemType="xs:unsignedShort"/>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Uint32">
+					<xs:complexType>
+						<xs:attribute name="value" use="required">
+							<xs:simpleType>
+								<xs:list itemType="xs:unsignedInt"/>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Uint64">
+					<xs:complexType>
+						<xs:attribute name="value" use="required">
+							<xs:simpleType>
+								<xs:list itemType="xs:unsignedLong"/>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Float32">
+					<xs:complexType>
+						<xs:attribute name="value" use="required">
+							<xs:simpleType>
+								<xs:list itemType="xs:float"/>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Float64">
+					<xs:complexType>
+						<xs:attribute name="value" use="required">
+							<xs:simpleType>
+								<xs:list itemType="xs:double"/>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="String">
+					<xs:complexType>
+						<xs:attribute name="value" type="xs:string" use="required"> </xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Binary">
+					<xs:complexType>
+						<xs:attribute name="value" type="xs:hexBinary" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:attribute name="pos" type="xs:unsignedShort" form="unqualified" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ReceivingPayloadField">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="Int8">
+					<xs:complexType>
+						<xs:attribute name="min" type="xs:byte" use="optional"> </xs:attribute>
+						<xs:attribute name="max" type="xs:byte" use="optional"> </xs:attribute>
+						<xs:attribute name="value" use="optional">
+							<xs:simpleType>
+								<xs:list itemType="xs:byte"/>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute default="1" name="dimensionSize" use="optional"
+							type="xs:unsignedInt"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Int16">
+					<xs:complexType>
+						<xs:attribute name="min" type="xs:short" use="optional"> </xs:attribute>
+						<xs:attribute name="max" type="xs:short" use="optional"> </xs:attribute>
+						<xs:attribute name="value" use="optional">
+							<xs:simpleType>
+								<xs:list itemType="xs:short"/>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute default="1" name="dimensionSize" use="optional"
+							type="xs:unsignedInt"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Int32">
+					<xs:complexType>
+						<xs:attribute name="min" type="xs:int" use="optional"> </xs:attribute>
+						<xs:attribute name="max" type="xs:int" use="optional"> </xs:attribute>
+						<xs:attribute name="value" use="optional">
+							<xs:simpleType>
+								<xs:list itemType="xs:int"/>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute default="1" name="dimensionSize" use="optional"
+							type="xs:unsignedInt"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Int64">
+					<xs:complexType>
+						<xs:attribute name="min" type="xs:long" use="optional"> </xs:attribute>
+						<xs:attribute name="max" type="xs:long" use="optional"> </xs:attribute>
+						<xs:attribute name="value" use="optional">
+							<xs:simpleType>
+								<xs:list itemType="xs:long"/>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute default="1" name="dimensionSize" use="optional"
+							type="xs:unsignedInt"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Uint8">
+					<xs:complexType>
+						<xs:attribute name="min" type="xs:unsignedByte" use="optional"> </xs:attribute>
+						<xs:attribute name="max" type="xs:unsignedByte" use="optional"> </xs:attribute>
+						<xs:attribute name="value" use="optional">
+							<xs:simpleType>
+								<xs:list itemType="xs:unsignedByte"/>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute default="1" name="dimensionSize" use="optional"
+							type="xs:unsignedInt"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Uint16">
+					<xs:complexType>
+						<xs:attribute name="min" type="xs:unsignedShort" use="optional"> </xs:attribute>
+						<xs:attribute name="max" type="xs:unsignedShort" use="optional"> </xs:attribute>
+						<xs:attribute name="value" use="optional">
+							<xs:simpleType>
+								<xs:list itemType="xs:unsignedShort"/>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute default="1" name="dimensionSize" use="optional"
+							type="xs:unsignedInt"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Uint32">
+					<xs:complexType>
+						<xs:attribute name="min" type="xs:unsignedInt" use="optional"> </xs:attribute>
+						<xs:attribute name="max" type="xs:unsignedInt" use="optional"> </xs:attribute>
+						<xs:attribute name="value" use="optional">
+							<xs:simpleType>
+								<xs:list itemType="xs:unsignedInt"/>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute default="1" name="dimensionSize" use="optional"
+							type="xs:unsignedInt"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Uint64">
+					<xs:complexType>
+						<xs:attribute name="min" type="xs:unsignedLong" use="optional"> </xs:attribute>
+						<xs:attribute name="max" type="xs:unsignedLong" use="optional"> </xs:attribute>
+						<xs:attribute name="value" use="optional">
+							<xs:simpleType>
+								<xs:list itemType="xs:unsignedLong"/>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute default="1" name="dimensionSize" use="optional"
+							type="xs:unsignedInt"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Float32">
+					<xs:complexType>
+						<xs:attribute name="min" type="xs:float" use="optional"> </xs:attribute>
+						<xs:attribute name="max" type="xs:float" use="optional"> </xs:attribute>
+						<xs:attribute name="value" use="optional">
+							<xs:simpleType>
+								<xs:list itemType="xs:float"/>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute default="1" name="dimensionSize" use="optional"
+							type="xs:unsignedInt"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Float64">
+					<xs:complexType>
+						<xs:attribute name="min" type="xs:double" use="optional"> </xs:attribute>
+						<xs:attribute name="max" type="xs:double" use="optional"> </xs:attribute>
+						<xs:attribute name="value" use="optional">
+							<xs:simpleType>
+								<xs:list itemType="xs:double"/>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute default="1" name="dimensionSize" use="optional"
+							type="xs:unsignedInt"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="String">
+					<xs:complexType>
+						<xs:attribute name="value" type="xs:string" use="optional"> </xs:attribute>
+						<xs:attribute fixed="1" name="dimensionSize" use="optional"
+							type="xs:unsignedInt"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Binary">
+					<xs:complexType>
+						<xs:attribute name="value" type="xs:hexBinary" use="optional"/>
+						<xs:attribute fixed="1" name="dimensionSize" use="optional"
+							type="xs:unsignedInt"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:attribute name="pos" type="xs:unsignedShort" form="qualified" use="required"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
