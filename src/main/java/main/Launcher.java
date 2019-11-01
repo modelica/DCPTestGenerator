@@ -1,6 +1,7 @@
 package main;
 
 import java.io.File;
+import java.net.URL;
 
 import javax.net.ssl.HostnameVerifier;
 
@@ -101,8 +102,10 @@ public class Launcher {
 		}
 
 		String dcpx = cmd.getOptionValue("dcpx");
-		String extension = cmd.getOptionValue("extension");
-		String template = cmd.getOptionValue("template");
+		String extensionStr = cmd.getOptionValue("extension");
+        URL extension = null;
+		String templateStr = cmd.getOptionValue("template");
+		URL template = null;
 		boolean udp = cmd.hasOption("UDP");
 		boolean tcp = cmd.hasOption("TCP");
 		
@@ -127,9 +130,10 @@ public class Launcher {
 		
 		
 		try {
-			slaveDescription = Loader.loadSlaveDescriptionFromXml(dcpx, true);
+            slaveDescription = Loader.loadSlaveDescriptionFromXml(new File(dcpx).toURL(), true);
 		} catch (Exception e) {
-			System.err.println("Error while loading dcpx: " + e.getMessage());
+		    e.printStackTrace();
+            System.err.println("Error while loading dcpx: " + e.getMessage());
 			System.exit(1);
 		}
 		
@@ -202,18 +206,26 @@ public class Launcher {
 			}
 		}
 		
-		if(template == null) {
+		if(templateStr == null) {
 			
-			String path = "templates/predefined_template";
+			templateStr = "templates/predefined_template";
 			
 			if(slaveDescription.getCapabilityFlags().isCanHandleReset()) {
-				path += "_withReset";
+                templateStr += "_withReset";
 			} else {
-				path += "_withoutReset";
+                templateStr += "_withoutReset";
 			}
 			
-			template = classLoader.getResource(path + ".xml").getPath();
-		}
+			template = classLoader.getResource(templateStr + ".xml");
+		} else {
+            try {
+                File templateFile = new File(templateStr);
+                template = templateFile.toURI().toURL();
+            } catch (Exception e) {
+                System.err.println("Error while loading template: " + e.getMessage());
+                System.exit(1);
+            }
+        }
 		
 		try {
 			testTemplate = Loader.loadTestTemplateFromXml(template, true);
@@ -222,23 +234,31 @@ public class Launcher {
 			System.exit(1);
 		}
 		
-		if(extension == null) {
-			String extensionPath = "extensions/predefined_extension";
+		if(extensionStr == null) {
+			extensionStr = "extensions/predefined_extension";
 
 			if(slaveDescription.getOpMode().getSoftRealTime() != null) {
-				extensionPath += "_SRT";
+                extensionStr += "_SRT";
 			} else {
 				System.err.println("Error: Currently only the generation of test files with operation mode SRT is supported, but slave does not support SRT.");
 				System.exit(1);
 			}
 			if(udp) {
-				extensionPath += "_UDP";
+                extensionStr += "_UDP";
 			} else if(tcp) {
-				extensionPath += "_TCP";
+                extensionStr += "_TCP";
 			}
 			
-			extension = classLoader.getResource(extensionPath + ".xml").getPath();
-		}
+			extension = classLoader.getResource(extensionStr + ".xml");
+		} else {
+            try {
+                File extensionFile = new File(extensionStr);
+                extension = extensionFile.toURI().toURL();
+            } catch (Exception e) {
+                System.err.println("Error while loading extension: " + e.getMessage());
+                System.exit(1);
+            }
+        }
 		
 		try {
 			testExtension = Loader.loadTestTransformationFromXml(extension, true);
@@ -256,19 +276,19 @@ public class Launcher {
 			} else {
 				outputPath += "uuid=" + slaveDescription.getUuid() + ", ";
 			}
-			String[] templateParts = template.split("/");
+			String[] templateParts = templateStr.split("/");
 			if(templateParts.length == 0) {
-				templateParts = template.split("\\");
+				templateParts = templateStr.split("\\");
 				if(templateParts.length == 0) {
-					templateParts = new String[] {template};
+					templateParts = new String[] {templateStr};
 				}
 			}
 			outputPath += "template=" + templateParts[templateParts.length - 1] + ", ";
-			String[] extensionParts = extension.split("/");
+			String[] extensionParts = extensionStr.split("/");
 			if(extensionParts.length == 0) {
-				extensionParts = extension.split("\\");
+				extensionParts = extensionStr.split("\\");
 				if(extensionParts.length == 0) {
-					extensionParts = new String[] {extension};
+					extensionParts = new String[] {extensionStr};
 				}
 			}
 			outputPath += "extension=" + extensionParts[extensionParts.length - 1] + "]";

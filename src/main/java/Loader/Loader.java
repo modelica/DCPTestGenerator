@@ -3,6 +3,7 @@ package Loader;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
+import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -23,26 +24,18 @@ import main.Launcher;
 
 public class Loader {
 
-	public static DcpTestSuiteExtension loadTestTransformationFromXml(String xmlPath, boolean validateAgainstXsd)
+	public static DcpTestSuiteExtension loadTestTransformationFromXml(URL xmlPath, boolean validateAgainstXsd)
 			throws Exception {
 
 		if (validateAgainstXsd) {
-			boolean validateSuccess = validateXMLSchema(xmlPath, Loader.class.getClassLoader().getResource("xsd/DCP-Testsuite-extension.xsd").getPath());
+			boolean validateSuccess = validateXMLSchema(xmlPath, Loader.class.getClassLoader().getResource("xsd/DCP-Testsuite-extension.xsd"));
 			if (!validateSuccess) {
 
 				throw new Exception("Transformation XML is not valid !");
 			}
 		}
 
-		byte[] encoded = null;
-		try {
-			encoded = Files.readAllBytes(Paths.get(xmlPath));
-		} catch (IOException e) {
-			System.err.println("Error while parsing Transformation XML file");
-			e.printStackTrace();
-		}
-		String fileContent = new String(encoded, Charset.defaultCharset());
-		DcpTestSuiteExtension aciTestSuiteEx = JAXB.unmarshal(new StringReader(fileContent),
+		DcpTestSuiteExtension aciTestSuiteEx = JAXB.unmarshal(xmlPath.openStream(),
 				DcpTestSuiteExtension.class);
 		if (Launcher.DEBUG) {
 			System.out.println("Extension loaded");
@@ -51,26 +44,18 @@ public class Loader {
 
 	}
 
-	public static DcpTestProcedure loadTestTemplateFromXml(String xmlPath, boolean validateAgainstXsd)
+	public static DcpTestProcedure loadTestTemplateFromXml(URL xmlPath, boolean validateAgainstXsd)
 			throws Exception {
 
 		if (validateAgainstXsd) {
-			boolean validateSuccess = validateXMLSchema(xmlPath, Loader.class.getClassLoader().getResource("xsd/DcpTestProcedure.xsd").getPath());
+			boolean validateSuccess = validateXMLSchema(xmlPath, Loader.class.getClassLoader().getResource("xsd/DcpTestProcedure.xsd"));
 			if (!validateSuccess) {
 
 				throw new Exception("Test Template XML is not valid !");
 			}
 		}
 
-		byte[] encoded = null;
-		try {
-			encoded = Files.readAllBytes(Paths.get(xmlPath));
-		} catch (IOException e) {
-			System.err.println("Error while parsing Test Template XML file");
-			e.printStackTrace();
-		}
-		String fileContent = new String(encoded, Charset.defaultCharset());
-		DcpTestProcedure aciTestProcedure = JAXB.unmarshal(new StringReader(fileContent), DcpTestProcedure.class);
+		DcpTestProcedure aciTestProcedure = JAXB.unmarshal(xmlPath.openStream(), DcpTestProcedure.class);
 		if (Launcher.DEBUG) {
 			System.out.println("Template loaded");
 		}
@@ -78,27 +63,19 @@ public class Loader {
 
 	}
 
-	public static DcpSlaveDescription loadSlaveDescriptionFromXml(String xmlPath, boolean validateAgainstXsd)
+	public static DcpSlaveDescription loadSlaveDescriptionFromXml(URL xmlPath, boolean validateAgainstXsd)
 			throws Exception {
 
 		if (validateAgainstXsd) {
 			boolean validateSuccess = validateXMLSchema(xmlPath,
-					Loader.class.getClassLoader().getResource("xsd/dcpSlaveDescription.xsd").getPath());
+					Loader.class.getClassLoader().getResource("xsd/dcpSlaveDescription.xsd"));
 			if (!validateSuccess) {
 
 				throw new Exception("Slave Description XML is not valid !");
 			}
 		}
 
-		byte[] encoded = null;
-		try {
-			encoded = Files.readAllBytes(Paths.get(xmlPath));
-		} catch (IOException e) {
-			System.err.println("Error while parsing Slave Description XML file");
-			e.printStackTrace();
-		}
-		String fileContent = new String(encoded, Charset.defaultCharset());
-		DcpSlaveDescription acuDescription = JAXB.unmarshal(new StringReader(fileContent), DcpSlaveDescription.class);
+		DcpSlaveDescription acuDescription = JAXB.unmarshal(xmlPath.openStream(), DcpSlaveDescription.class);
 		if (Launcher.DEBUG) {
 			System.out.println("Slave Description was loaded.");
 		}
@@ -106,16 +83,16 @@ public class Loader {
 
 	}
 
-	public static boolean validateXMLSchema(String xmlFile, String schemaFile) {
+	public static boolean validateXMLSchema(URL xmlFile, URL schemaUrl) {
 		if (Launcher.DEBUG) {
 			System.out.println("Checking : " + xmlFile);
 		}
 		SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 		try {
-			Schema schema = schemaFactory.newSchema(new File(schemaFile));
+			Schema schema = schemaFactory.newSchema(schemaUrl);
 
 			Validator validator = schema.newValidator();
-			validator.validate(new StreamSource(new File(xmlFile)));
+			validator.validate(new StreamSource(xmlFile.openStream()));
 			return true;
 		} catch (SAXException | IOException e) {
 			e.printStackTrace();

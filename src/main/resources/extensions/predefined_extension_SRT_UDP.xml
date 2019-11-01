@@ -1659,7 +1659,7 @@
               <Random/>
             </IpAdress>
             <Port>
-              <Variable variablenname="slave.drivers.udp.control.port"/>
+              <Variable variablenname="slave.transportProtocols.udpiPv4.control.port"/>
             </Port>
           </CFG_param_network_information_UDP_IPv4>
         </Sending>
