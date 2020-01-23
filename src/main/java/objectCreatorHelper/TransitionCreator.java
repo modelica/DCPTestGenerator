@@ -364,7 +364,7 @@ public class TransitionCreator {
 
 		if (stepsInfo.getDataId().getInvalid() != null) {
 
-			steps.setDataId(-1);
+			steps.setDataId(0);
 		}
 
 		if (stepsInfo.getDataId().getRandom() != null) {
@@ -431,7 +431,7 @@ public class TransitionCreator {
 
 		if (stepsInfo.getSteps().getInvalid() != null) {
 
-			steps.setSteps(-1);
+			steps.setSteps(0);
 
 		}
 
@@ -713,7 +713,7 @@ public class TransitionCreator {
 		int randValueReference = dcpWrapper.getRandomOutputVr();
 
 		if (outInfo.getReceiver().getInvalid() != null) {
-			output.setReceiver((short) -1);
+			output.setReceiver((short) 0);
 		}
 
 		if (outInfo.getReceiver().getRandom() != null) {
@@ -751,7 +751,7 @@ public class TransitionCreator {
 
 		if (outInfo.getSourceVr().getInvalid() != null) {
 
-			output.setSourceVr(BigInteger.valueOf(-1));
+			output.setSourceVr(BigInteger.valueOf(0));
 		}
 
 		if (outInfo.getSourceVr().getRandom() != null) {
@@ -3635,7 +3635,7 @@ public class TransitionCreator {
 		int invalidValueReference = dcpWrapper.getInvalidParamVr();
 
 		if (cfgparamInfo.getParamId().getInvalid() != null) {
-			param.setParamId(-1);
+			param.setParamId(0);
 		}
 
 		if (cfgparamInfo.getParamId().getRandom() != null) {
@@ -3848,7 +3848,7 @@ public class TransitionCreator {
 
 		if (paramInfo.getParamId().getInvalid() != null) {
 
-			param.setParamId(-1);
+			param.setParamId(0);
 		}
 
 		if (paramInfo.getParamId().getRandom() != null) {
@@ -4144,7 +4144,7 @@ public class TransitionCreator {
 
 		if (tcpInfo.getParamId().getInvalid() != null) {
 
-			tcp.setParamId(-1);
+			tcp.setParamId(0);
 		}
 
 		if (tcpInfo.getParamId().getRandom() != null) {
@@ -4640,7 +4640,7 @@ public class TransitionCreator {
 
 		if (udpInfo.getParamId().getInvalid() != null) {
 
-			udp.setParamId(-1);
+			udp.setParamId(0);
 		}
 
 		if (udpInfo.getParamId().getRandom() != null) {
@@ -7901,7 +7901,7 @@ public class TransitionCreator {
 
 		if (cfgSetScopeInfo.getDataId().getInvalid() != null) {
 
-			setScope.setDataId(-1);
+			setScope.setDataId(0);
 		}
 
 		if (cfgSetScopeInfo.getDataId().getRandom() != null) {
