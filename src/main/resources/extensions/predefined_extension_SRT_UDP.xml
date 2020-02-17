@@ -4751,7 +4751,6 @@
     </If>
   </ForEach>
 
-
   <If condition="slave.heartbeat != undefined">
     <ForEach variableName="step">
       <Set>
@@ -4784,13 +4783,32 @@
         <Set>
           <Test.successor stepVariable="step"/>
         </Set>
-        <If condition="transition.receiving != undefined">
+        <If condition="transition.receiving != undefined &amp;&amp; transition.to != transition.from">
           <AddTransition fromOffset="1" toOffset="2">
             <Receiving>
               <Copy pduVariable="transition"/>
             </Receiving>
           </AddTransition>
           <AddTransition fromOffset="2" toVariable="transition.to">
+            <Receiving>
+              <RSP_state_ack>
+                <Sender>
+                  <Value value="1"/>
+                </Sender>
+                <StateId>
+                  <Variable variablenname="determineState(step)"/>
+                </StateId>
+              </RSP_state_ack>
+            </Receiving>
+          </AddTransition>
+        </If>
+		<If condition="transition.receiving != undefined &amp;&amp; transition.to == transition.from">
+          <AddTransition fromOffset="1" toOffset="1">
+            <Receiving>
+              <Copy pduVariable="transition"/>
+            </Receiving>
+          </AddTransition>
+          <AddTransition fromOffset="1" toVariable="transition.to">
             <Receiving>
               <RSP_state_ack>
                 <Sender>
