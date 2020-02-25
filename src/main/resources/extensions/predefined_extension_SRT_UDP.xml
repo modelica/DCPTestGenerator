@@ -4774,7 +4774,7 @@
               <Value value="1"/>
             </Sender>
             <StateId>
-              <Variable variablenname="determineState(step)"/>
+              <Variable variablenname="determineState(transition.to)"/>
             </StateId>
           </RSP_state_ack>
         </Receiving>
@@ -4796,7 +4796,7 @@
                   <Value value="1"/>
                 </Sender>
                 <StateId>
-                  <Variable variablenname="determineState(step)"/>
+                  <Variable variablenname="determineState(transition.to)"/>
                 </StateId>
               </RSP_state_ack>
             </Receiving>
