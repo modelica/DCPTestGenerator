@@ -44,6 +44,12 @@ function dataType(vr) {
                 if (slave.variables.variable[i].output.uint8 != undefined) {
                     return uint8
                 }
+                if (slave.variables.variable[i].output.string != undefined) {
+                    return string
+                }
+                if (slave.variables.variable[i].output.binary != undefined) {
+                    return binary
+                }
             }
             if (slave.variables.variable[i].input != undefined) {
                 if (slave.variables.variable[i].input.float32 != undefined) {
@@ -76,6 +82,12 @@ function dataType(vr) {
                 if (slave.variables.variable[i].input.uint8 != undefined) {
                     return uint8
                 }
+                if (slave.variables.variable[i].input.string != undefined) {
+                    return string
+                }
+                if (slave.variables.variable[i].input.binary != undefined) {
+                    return binary
+                }
             }
             if (slave.variables.variable[i].parameter != undefined) {
                 if (slave.variables.variable[i].parameter.float32 != undefined) {
@@ -107,6 +119,12 @@ function dataType(vr) {
                 }
                 if (slave.variables.variable[i].parameter.uint8 != undefined) {
                     return uint8
+                }
+                if (slave.variables.variable[i].parameter.string != undefined) {
+                    return string
+                }
+                if (slave.variables.variable[i].parameter.binary != undefined) {
+                    return binary
                 }
             }
         }
