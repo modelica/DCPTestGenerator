@@ -808,7 +808,7 @@ public class DcpWrapper {
 							return v.getInput().getUint8().getMax();
 						} else {
 							// Uint8 max
-							return 255;
+							return (short)255;
 						}
 
 					}
@@ -929,7 +929,7 @@ public class DcpWrapper {
 							return v.getOutput().getUint8().getMax();
 						} else {
 							// Uint8 max
-							return 255;
+							return (short)255;
 						}
 
 					}
@@ -1050,7 +1050,7 @@ public class DcpWrapper {
 							return v.getParameter().getUint8().getMax();
 						} else {
 							// Uint8 max
-							return 255;
+							return (short)255;
 						}
 
 					}
@@ -1166,7 +1166,7 @@ public class DcpWrapper {
 						if (v.getInput().getUint32().getMin() != null) {
 							return v.getInput().getUint32().getMin();
 						} else {
-							return 0;
+							return 0L;
 						}
 
 					}
@@ -1175,7 +1175,8 @@ public class DcpWrapper {
 						if (v.getInput().getUint64().getMin() != null) {
 							return v.getInput().getUint64().getMin();
 						} else {
-							return 0;
+							BigInteger big = new BigInteger("0");
+							return big;
 						}
 
 					}
@@ -1184,7 +1185,7 @@ public class DcpWrapper {
 						if (v.getInput().getUint8().getMin() != null) {
 							return v.getInput().getUint8().getMin();
 						} else {
-							return 0;
+							return (short)0;
 						}
 
 					}
@@ -1272,7 +1273,7 @@ public class DcpWrapper {
 						if (v.getOutput().getUint32().getMin() != null) {
 							return v.getOutput().getUint32().getMin();
 						} else {
-							return 0;
+							return 0L;
 						}
 
 					}
@@ -1281,7 +1282,8 @@ public class DcpWrapper {
 						if (v.getOutput().getUint64().getMin() != null) {
 							return v.getOutput().getUint64().getMin();
 						} else {
-							return 0;
+							BigInteger big = new BigInteger("0");
+							return big;
 						}
 
 					}
@@ -1290,7 +1292,7 @@ public class DcpWrapper {
 						if (v.getOutput().getUint8().getMin() != null) {
 							return v.getOutput().getUint8().getMin();
 						} else {
-							return 0;
+							return (short)0;
 						}
 
 					}
@@ -1378,7 +1380,7 @@ public class DcpWrapper {
 						if (v.getParameter().getUint32().getMin() != null) {
 							return v.getParameter().getUint32().getMin();
 						} else {
-							return 0;
+							return 0L;
 						}
 
 					}
@@ -1387,7 +1389,8 @@ public class DcpWrapper {
 						if (v.getParameter().getUint64().getMin() != null) {
 							return v.getParameter().getUint64().getMin();
 						} else {
-							return 0;
+							BigInteger big = new BigInteger("0");
+							return big;
 						}
 
 					}
@@ -1396,7 +1399,7 @@ public class DcpWrapper {
 						if (v.getParameter().getUint8().getMin() != null) {
 							return v.getParameter().getUint8().getMin();
 						} else {
-							return 0;
+							return (short)0;
 						}
 
 					}
