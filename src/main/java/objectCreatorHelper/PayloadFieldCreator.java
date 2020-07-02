@@ -157,6 +157,20 @@ public class PayloadFieldCreator {
 				payloadField.setUint8(i);
 
 			}
+			if (dataType == DataTypeList.string) {
+				dcpTestProcedure.ReceivingPayloadField.String i = new dcpTestProcedure.ReceivingPayloadField.String();
+				//i.setMin( dcpWrapper.getMinForVr(valueReference));
+				//i.setMax( dcpWrapper.getMaxForVr(valueReference));
+				payloadField.setString(i);
+
+			}
+			if (dataType == DataTypeList.binary) {
+				dcpTestProcedure.ReceivingPayloadField.Binary i = new dcpTestProcedure.ReceivingPayloadField.Binary();
+				//i.setMin((short) dcpWrapper.getMinForVr(valueReference));
+				//i.setMax((short) dcpWrapper.getMaxForVr(valueReference));
+				payloadField.setBinary(i);
+
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
