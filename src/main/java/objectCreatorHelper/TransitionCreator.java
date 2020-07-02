@@ -624,7 +624,7 @@ public class TransitionCreator {
 		if (configInfo.getSourceDataType().getInvalid() != null) {
 
 			try {
-				configInput.setSourceDataType(dcpWrapper.getInvalidDataTypeFromVr(randValueReference));
+				configInput.setSourceDataType(dcpWrapper.getInvalidDataTypeFromVr(configInput.getTargetVr().intValue()));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
