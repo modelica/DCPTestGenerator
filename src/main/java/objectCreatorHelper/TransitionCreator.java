@@ -2764,7 +2764,7 @@ public class TransitionCreator {
 
 			if (ipO instanceof String) {
 
-				long ip = ((Double) environment.eval("ip2int('" + ipO + "');")).longValue();
+				long ip = ((Integer) environment.eval("ip2int('" + ipO + "');")).longValue();
 				udp.setIpAddress(ip);
 			}
 
