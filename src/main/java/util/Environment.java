@@ -100,20 +100,20 @@ public class Environment {
 			scriptEngine.eval("var Tester = {};");
 			scriptEngine.eval("var Tester = {};");
 			scriptEngine.eval("var ACU = {};");
-			scriptEngine.eval(new InputStreamReader(Loader.class.getClass().getResourceAsStream("/javascript/ip2int")));
+			scriptEngine.eval(new InputStreamReader(Loader.class.getResourceAsStream("/javascript/ip2int")));
 			scriptEngine.eval("Tester.ip ='" + testerIp + "';");
 			scriptEngine.eval("Tester.port = " + testerPort + ";");
 			scriptEngine.eval("ACU.uuid = '" + dcpWrapper.getUuid() + "';");
-			scriptEngine.eval(new InputStreamReader(Loader.class.getClass().getResourceAsStream("/javascript/Ids.js")));
-			scriptEngine.eval(new InputStreamReader(Loader.class.getClass().getResourceAsStream("/javascript/resolve.js")));
-			scriptEngine.eval(new InputStreamReader(Loader.class.getClass().getResourceAsStream("/javascript/breakpoint.js")));
-			scriptEngine.eval(new InputStreamReader(Loader.class.getClass().getResourceAsStream("/javascript/minMaxDefined.js")));
-			scriptEngine.eval(new InputStreamReader(Loader.class.getClass().getResourceAsStream("/javascript/getMin.js")));
-			scriptEngine.eval(new InputStreamReader(Loader.class.getClass().getResourceAsStream("/javascript/getMax.js")));
-			scriptEngine.eval(new InputStreamReader(Loader.class.getClass().getResourceAsStream("/javascript/determineState.js")));
-			scriptEngine.eval(new InputStreamReader(Loader.class.getClass().getResourceAsStream("/javascript/parseTransitions.js")));
-			scriptEngine.eval(new InputStreamReader(Loader.class.getClass().getResourceAsStream("/javascript/dataType.js")));
-			scriptEngine.eval(new InputStreamReader(Loader.class.getClass().getResourceAsStream("/javascript/hasVariables.js")));
+			scriptEngine.eval(new InputStreamReader(Loader.class.getResourceAsStream("/javascript/Ids.js")));
+			scriptEngine.eval(new InputStreamReader(Loader.class.getResourceAsStream("/javascript/resolve.js")));
+			scriptEngine.eval(new InputStreamReader(Loader.class.getResourceAsStream("/javascript/breakpoint.js")));
+			scriptEngine.eval(new InputStreamReader(Loader.class.getResourceAsStream("/javascript/minMaxDefined.js")));
+			scriptEngine.eval(new InputStreamReader(Loader.class.getResourceAsStream("/javascript/getMin.js")));
+			scriptEngine.eval(new InputStreamReader(Loader.class.getResourceAsStream("/javascript/getMax.js")));
+			scriptEngine.eval(new InputStreamReader(Loader.class.getResourceAsStream("/javascript/determineState.js")));
+			scriptEngine.eval(new InputStreamReader(Loader.class.getResourceAsStream("/javascript/parseTransitions.js")));
+			scriptEngine.eval(new InputStreamReader(Loader.class.getResourceAsStream("/javascript/dataType.js")));
+			scriptEngine.eval(new InputStreamReader(Loader.class.getResourceAsStream("/javascript/hasVariables.js")));
 
 		} catch (ScriptException e) {
 
