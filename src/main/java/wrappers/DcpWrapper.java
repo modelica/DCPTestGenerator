@@ -2358,7 +2358,8 @@ public class DcpWrapper {
 
 			// return numeratorList.get((new
 			// Random()).nextInt(numeratorList.size()));
-			Collections.sort(numeratorList);
+			
+			//Collections.sort(numeratorList);
 			return numeratorList.get(0);
 		} else {
 			return 0;
@@ -2399,7 +2400,8 @@ public class DcpWrapper {
 
 		if (denominatorList.size() != 0) {
 
-			return denominatorList.get((new Random()).nextInt(denominatorList.size()));
+			//return denominatorList.get((new Random()).nextInt(denominatorList.size()));
+			return denominatorList.get(0);
 
 		} else {
 			return 0;
