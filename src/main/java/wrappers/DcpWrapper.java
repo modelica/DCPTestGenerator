@@ -808,7 +808,7 @@ public class DcpWrapper {
 							return v.getInput().getUint8().getMax();
 						} else {
 							// Uint8 max
-							return 255;
+							return (short)255;
 						}
 
 					}
@@ -929,7 +929,7 @@ public class DcpWrapper {
 							return v.getOutput().getUint8().getMax();
 						} else {
 							// Uint8 max
-							return 255;
+							return (short)255;
 						}
 
 					}
@@ -1050,7 +1050,7 @@ public class DcpWrapper {
 							return v.getParameter().getUint8().getMax();
 						} else {
 							// Uint8 max
-							return 255;
+							return (short)255;
 						}
 
 					}
@@ -1166,7 +1166,7 @@ public class DcpWrapper {
 						if (v.getInput().getUint32().getMin() != null) {
 							return v.getInput().getUint32().getMin();
 						} else {
-							return 0;
+							return 0L;
 						}
 
 					}
@@ -1175,7 +1175,8 @@ public class DcpWrapper {
 						if (v.getInput().getUint64().getMin() != null) {
 							return v.getInput().getUint64().getMin();
 						} else {
-							return 0;
+							BigInteger big = new BigInteger("0");
+							return big;
 						}
 
 					}
@@ -1184,7 +1185,7 @@ public class DcpWrapper {
 						if (v.getInput().getUint8().getMin() != null) {
 							return v.getInput().getUint8().getMin();
 						} else {
-							return 0;
+							return (short)0;
 						}
 
 					}
@@ -1272,7 +1273,7 @@ public class DcpWrapper {
 						if (v.getOutput().getUint32().getMin() != null) {
 							return v.getOutput().getUint32().getMin();
 						} else {
-							return 0;
+							return 0L;
 						}
 
 					}
@@ -1281,7 +1282,8 @@ public class DcpWrapper {
 						if (v.getOutput().getUint64().getMin() != null) {
 							return v.getOutput().getUint64().getMin();
 						} else {
-							return 0;
+							BigInteger big = new BigInteger("0");
+							return big;
 						}
 
 					}
@@ -1290,7 +1292,7 @@ public class DcpWrapper {
 						if (v.getOutput().getUint8().getMin() != null) {
 							return v.getOutput().getUint8().getMin();
 						} else {
-							return 0;
+							return (short)0;
 						}
 
 					}
@@ -1378,7 +1380,7 @@ public class DcpWrapper {
 						if (v.getParameter().getUint32().getMin() != null) {
 							return v.getParameter().getUint32().getMin();
 						} else {
-							return 0;
+							return 0L;
 						}
 
 					}
@@ -1387,7 +1389,8 @@ public class DcpWrapper {
 						if (v.getParameter().getUint64().getMin() != null) {
 							return v.getParameter().getUint64().getMin();
 						} else {
-							return 0;
+							BigInteger big = new BigInteger("0");
+							return big;
 						}
 
 					}
@@ -1396,7 +1399,7 @@ public class DcpWrapper {
 						if (v.getParameter().getUint8().getMin() != null) {
 							return v.getParameter().getUint8().getMin();
 						} else {
-							return 0;
+							return (short)0;
 						}
 
 					}
@@ -1432,11 +1435,20 @@ public class DcpWrapper {
 
 				if (v.getInput() != null) {
 
-					if (v.getInput().getFloat32() != null) {
-						return DataTypeList.float32;
+					if (v.getInput().getUint8() != null) {
+						return DataTypeList.uint8;
 					}
-					if (v.getInput().getFloat64() != null) {
-						return DataTypeList.float64;
+					if (v.getInput().getUint16() != null) {
+						return DataTypeList.uint16;
+					}
+					if (v.getInput().getUint32() != null) {
+						return DataTypeList.uint32;
+					}					
+					if (v.getInput().getUint64() != null) {
+						return DataTypeList.uint64;
+					}
+					if (v.getInput().getInt8() != null) {
+						return DataTypeList.int8;
 					}
 					if (v.getInput().getInt16() != null) {
 						return DataTypeList.int16;
@@ -1447,75 +1459,78 @@ public class DcpWrapper {
 					if (v.getInput().getInt64() != null) {
 						return DataTypeList.int64;
 					}
-					if (v.getInput().getInt8() != null) {
-						return DataTypeList.int8;
+					if (v.getInput().getFloat32() != null) {
+						return DataTypeList.float32;
+					}
+					if (v.getInput().getFloat64() != null) {
+						return DataTypeList.float64;
 					}
 					if (v.getInput().getString() != null) {
 						return DataTypeList.string;
 					}
-					if (v.getInput().getUint16() != null) {
-						return DataTypeList.uint16;
-					}
-					if (v.getInput().getUint32() != null) {
-						return DataTypeList.uint32;
-					}
-					if (v.getInput().getUint64() != null) {
-						return DataTypeList.uint64;
-					}
-					if (v.getInput().getUint8() != null) {
-						return DataTypeList.uint8;
+					if (v.getInput().getBinary() != null) {
+						return DataTypeList.binary;
 					}
 
 				}
 
 				if (v.getOutput() != null) {
 
-					if (v.getOutput().getFloat32() != null) {
-
-						return DataTypeList.float32;
-
-					}
-					if (v.getOutput().getFloat64() != null) {
-						return DataTypeList.float64;
-					}
-					if (v.getOutput().getInt16() != null) {
-						return DataTypeList.int16;
-					}
-					if (v.getOutput().getInt32() != null) {
-
-						return DataTypeList.int32;
-					}
-					if (v.getOutput().getInt64() != null) {
-						return DataTypeList.int64;
-					}
-					if (v.getOutput().getInt8() != null) {
-						return DataTypeList.int8;
-					}
-					if (v.getOutput().getString() != null) {
-						return DataTypeList.string;
+					if (v.getOutput().getUint8() != null) {
+						return DataTypeList.uint8;
 					}
 					if (v.getOutput().getUint16() != null) {
 						return DataTypeList.uint16;
 					}
 					if (v.getOutput().getUint32() != null) {
 						return DataTypeList.uint32;
-					}
+					}					
 					if (v.getOutput().getUint64() != null) {
 						return DataTypeList.uint64;
 					}
-					if (v.getOutput().getUint8() != null) {
-						return DataTypeList.uint8;
+					if (v.getOutput().getInt8() != null) {
+						return DataTypeList.int8;
+					}
+					if (v.getOutput().getInt16() != null) {
+						return DataTypeList.int16;
+					}
+					if (v.getOutput().getInt32() != null) {
+						return DataTypeList.int32;
+					}
+					if (v.getOutput().getInt64() != null) {
+						return DataTypeList.int64;
+					}
+					if (v.getOutput().getFloat32() != null) {
+						return DataTypeList.float32;
+					}
+					if (v.getOutput().getFloat64() != null) {
+						return DataTypeList.float64;
+					}
+					if (v.getOutput().getString() != null) {
+						return DataTypeList.string;
+					}
+					if (v.getOutput().getBinary() != null) {
+						return DataTypeList.binary;
 					}
 
 				}
 
 				if (v.getParameter() != null) {
 
-					if (v.getParameter().getFloat32() != null) {
-						return DataTypeList.float32;
+					if (v.getParameter().getUint8() != null) {
+						return DataTypeList.uint8;
 					}
-					if (v.getParameter().getFloat64() != null) {
-						return DataTypeList.float64;
+					if (v.getParameter().getUint16() != null) {
+						return DataTypeList.uint16;
+					}
+					if (v.getParameter().getUint32() != null) {
+						return DataTypeList.uint32;
+					}					
+					if (v.getParameter().getUint64() != null) {
+						return DataTypeList.uint64;
+					}
+					if (v.getParameter().getInt8() != null) {
+						return DataTypeList.int8;
 					}
 					if (v.getParameter().getInt16() != null) {
 						return DataTypeList.int16;
@@ -1526,23 +1541,17 @@ public class DcpWrapper {
 					if (v.getParameter().getInt64() != null) {
 						return DataTypeList.int64;
 					}
-					if (v.getParameter().getInt8() != null) {
-						return DataTypeList.int8;
+					if (v.getParameter().getFloat32() != null) {
+						return DataTypeList.float32;
+					}
+					if (v.getParameter().getFloat64() != null) {
+						return DataTypeList.float64;
 					}
 					if (v.getParameter().getString() != null) {
 						return DataTypeList.string;
 					}
-					if (v.getParameter().getUint16() != null) {
-						return DataTypeList.uint16;
-					}
-					if (v.getParameter().getUint32() != null) {
-						return DataTypeList.uint32;
-					}
-					if (v.getParameter().getUint64() != null) {
-						return DataTypeList.uint64;
-					}
-					if (v.getParameter().getUint8() != null) {
-						return DataTypeList.uint8;
+					if (v.getParameter().getBinary() != null) {
+						return DataTypeList.binary;
 					}
 
 				}
@@ -2349,7 +2358,8 @@ public class DcpWrapper {
 
 			// return numeratorList.get((new
 			// Random()).nextInt(numeratorList.size()));
-			Collections.sort(numeratorList);
+			
+			//Collections.sort(numeratorList);
 			return numeratorList.get(0);
 		} else {
 			return 0;
@@ -2390,7 +2400,8 @@ public class DcpWrapper {
 
 		if (denominatorList.size() != 0) {
 
-			return denominatorList.get((new Random()).nextInt(denominatorList.size()));
+			//return denominatorList.get((new Random()).nextInt(denominatorList.size()));
+			return denominatorList.get(0);
 
 		} else {
 			return 0;

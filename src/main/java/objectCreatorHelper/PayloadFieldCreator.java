@@ -118,10 +118,10 @@ public class PayloadFieldCreator {
 			}
 
 			if (dataType == DataTypeList.int8) {
-				Uint8 i = new Uint8();
-				i.setMin((short) dcpWrapper.getMinForVr(valueReference));
-				i.setMax((short) dcpWrapper.getMaxForVr(valueReference));
-				payloadField.setUint8(i);
+				Int8 i = new Int8();
+				i.setMin((byte) dcpWrapper.getMinForVr(valueReference));
+				i.setMax((byte) dcpWrapper.getMaxForVr(valueReference));
+				payloadField.setInt8(i);
 
 			}
 
@@ -155,6 +155,20 @@ public class PayloadFieldCreator {
 				i.setMin((short) dcpWrapper.getMinForVr(valueReference));
 				i.setMax((short) dcpWrapper.getMaxForVr(valueReference));
 				payloadField.setUint8(i);
+
+			}
+			if (dataType == DataTypeList.string) {
+				dcpTestProcedure.ReceivingPayloadField.String i = new dcpTestProcedure.ReceivingPayloadField.String();
+				//i.setMin( dcpWrapper.getMinForVr(valueReference));
+				//i.setMax( dcpWrapper.getMaxForVr(valueReference));
+				payloadField.setString(i);
+
+			}
+			if (dataType == DataTypeList.binary) {
+				dcpTestProcedure.ReceivingPayloadField.Binary i = new dcpTestProcedure.ReceivingPayloadField.Binary();
+				//i.setMin((short) dcpWrapper.getMinForVr(valueReference));
+				//i.setMax((short) dcpWrapper.getMaxForVr(valueReference));
+				payloadField.setBinary(i);
 
 			}
 
@@ -368,10 +382,10 @@ public class PayloadFieldCreator {
 			}
 
 			if (dataType == DataTypeList.int8) {
-				Uint8 i = new Uint8();
-				i.setMin((short) dcpWrapper.getMinForVr(valueReference));
-				i.setMax((short) dcpWrapper.getMaxForVr(valueReference));
-				payloadField.setUint8(i);
+				Int8 i = new Int8();
+				i.setMin((byte) dcpWrapper.getMinForVr(valueReference));
+				i.setMax((byte) dcpWrapper.getMaxForVr(valueReference));
+				payloadField.setInt8(i);
 
 			}
 

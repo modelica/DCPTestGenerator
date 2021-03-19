@@ -624,7 +624,7 @@ public class TransitionCreator {
 		if (configInfo.getSourceDataType().getInvalid() != null) {
 
 			try {
-				configInput.setSourceDataType(dcpWrapper.getInvalidDataTypeFromVr(randValueReference));
+				configInput.setSourceDataType(dcpWrapper.getInvalidDataTypeFromVr(configInput.getTargetVr().intValue()));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -2764,7 +2764,7 @@ public class TransitionCreator {
 
 			if (ipO instanceof String) {
 
-				long ip = ((Double) environment.eval("ip2int('" + ipO + "');")).longValue();
+				long ip = ((Integer) environment.eval("ip2int('" + ipO + "');")).longValue();
 				udp.setIpAddress(ip);
 			}
 
